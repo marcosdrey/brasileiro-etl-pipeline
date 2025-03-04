@@ -22,7 +22,7 @@ def main():
         start_year = int(start_year)
 
     except ValueError:
-        raise ValueError(f"'start_year' argument needs to be an integer.")
+        raise ValueError("'start_year' argument needs to be an integer.")
 
     if start_year < BASE_START_YEAR or start_year > BASE_END_YEAR:
         raise ValueError(
@@ -37,10 +37,10 @@ def main():
         response = requests.get(url_path)
 
         if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            h2_title = soup.find('h2', id="Classificação")
+            soup = BeautifulSoup(response.text, "html.parser")
+            h2_title = soup.find("h2", id="Classificação")
             tbody = h2_title.find_next("tbody")
-            table_value_rows = tbody.find_all('tr')[1:]
+            table_value_rows = tbody.find_all("tr")[1:]
 
             for row in table_value_rows:
                 club = get_infos_from_club(row, current_year)
@@ -49,13 +49,15 @@ def main():
             current_year += 1
 
         else:
-            raise Exception(f"Request error. URL is likely wrong or has restricted access. Status code: {response.status_code}")
+            raise Exception(
+                f"Request error. URL is likely wrong or has restricted access. Status code: {response.status_code}"
+            )
 
-    with open('../../data/raw.csv', mode='w') as file:
+    with open("../../data/raw.csv", mode="w") as file:
         dict_writer = csv.DictWriter(file, fieldnames=list_clubs[0].keys())
         dict_writer.writeheader()
         dict_writer.writerows(list_clubs)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

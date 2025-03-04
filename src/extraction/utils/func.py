@@ -3,16 +3,16 @@ import re
 
 def get_infos_from_club(row, current_year):
     th_placement_row = row.find("th", scope="row")
-    values = row.find_all('td')
+    values = row.find_all("td")
 
     if th_placement_row:
         values.insert(0, th_placement_row)
     club_placement = int(values[0].text.strip())
 
     if values[1].find("b"):
-        club_name = values[1].find('b').find_all('a')[1].text.strip()
+        club_name = values[1].find("b").find_all("a")[1].text.strip()
     else:
-        club_name = values[1].find_all('a')[1].text.strip()
+        club_name = values[1].find_all("a")[1].text.strip()
 
     club_points = extract_infos_from_table_cell(values[2])
     club_total_games = extract_infos_from_table_cell(values[3])
@@ -34,15 +34,15 @@ def get_infos_from_club(row, current_year):
         "goals_scored": club_goals_scored,
         "goals_conceded": club_goals_conceded,
         "goals_difference": club_goals_difference,
-        "season": current_year
+        "season": current_year,
     }
 
 
 def extract_infos_from_table_cell(cell):
     if cell.find("b"):
-        value = cell.find('b').text.strip()
+        value = cell.find("b").text.strip()
     else:
         value = cell.text.strip()
-    value = re.sub(r'[\u2212\u2012\u2013\u2014\u2015]', "-", value)
-    value = re.sub(r'[^\d-]', '', value)
+    value = re.sub(r"[\u2212\u2012\u2013\u2014\u2015]", "-", value)
+    value = re.sub(r"[^\d-]", "", value)
     return int(value)
