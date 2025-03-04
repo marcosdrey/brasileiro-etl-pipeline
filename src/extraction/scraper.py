@@ -32,7 +32,6 @@ while current_year < 2025:
         tbody = h2_title.find_next("tbody")
         table_value_rows = tbody.find_all('tr')[1:]
 
-        print(current_year)
         for row in table_value_rows:
             th_position_row = row.find("th", scope="row")
             values = row.find_all('td')
