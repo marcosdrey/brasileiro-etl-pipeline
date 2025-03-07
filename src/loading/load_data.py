@@ -17,7 +17,7 @@ def connect_to_postgresql():
         port=os.getenv("POSTGRES_PORT"),
         user=os.getenv("POSTGRES_USER"),
         password=os.getenv("POSTGRES_PASSWORD"),
-        dbname=os.getenv("POSTGRES_DB")
+        dbname=os.getenv("POSTGRES_DB"),
     )
 
 
@@ -26,7 +26,8 @@ def get_data(file_path):
 
 
 def create_table(connection, cursor):
-    cursor.execute("""
+    cursor.execute(
+        """
     CREATE TABLE IF NOT EXISTS brasileirao_data (
         id SERIAL PRIMARY KEY,
         placement INT NOT NULL,
@@ -42,7 +43,8 @@ def create_table(connection, cursor):
         season INT NOT NULL,
         winning_percentage NUMERIC(5,2) NOT NULL
     )
-    """)
+    """
+    )
     connection.commit()
 
 
@@ -60,5 +62,5 @@ def main():
         insert_data(conn, cursor, INSERT_DATA_QUERY, clubs_list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
