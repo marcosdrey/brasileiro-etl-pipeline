@@ -14,7 +14,7 @@ def main():
     with DatabaseLoader() as db_loader:
         db_loader.create_table(q.CREATE_TABLE_QUERY)
         df = get_data(TRANSFORMED_DATA_PATH)
-        clubs_list = [tuple(row) for i, row in df.iterrows()]
+        clubs_list = [tuple(row) for _, row in df.iterrows()]
         db_loader.insert_data(q.INSERT_DATA_QUERY, clubs_list)
 
 
