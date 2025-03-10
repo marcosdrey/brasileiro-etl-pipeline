@@ -2,7 +2,8 @@ import sys
 import requests
 import csv
 from bs4 import BeautifulSoup
-from utils.func import get_infos_from_club
+from src.extraction.utils.func import get_infos_from_club
+from src.config import get_data_file
 
 
 # First year of the current format of Brasileirão. Data collection may not work below this year.
@@ -53,7 +54,7 @@ def main():
                 f"Request error. URL is likely wrong or has restricted access. Status code: {response.status_code}"
             )
 
-    with open("../../data/raw.csv", mode="w") as file:
+    with open(get_data_file('raw.csv'), mode="w") as file:
         dict_writer = csv.DictWriter(file, fieldnames=list_clubs[0].keys())
         dict_writer.writeheader()
         dict_writer.writerows(list_clubs)

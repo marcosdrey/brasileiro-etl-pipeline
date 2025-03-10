@@ -1,9 +1,10 @@
 import pandas as pd
-import queries as q
-from database_loader import DatabaseLoader
+import src.loading.queries as q
+from src.loading.database_loader import DatabaseLoader
+from src.config import get_data_file
 
 
-TRANSFORMED_DATA_PATH = "../../data/transformed.csv"
+TRANSFORMED_DATA_PATH = get_data_file("transformed.csv")
 
 
 def get_data(file_path):

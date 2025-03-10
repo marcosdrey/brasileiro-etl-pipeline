@@ -1,8 +1,9 @@
-from data_transformer import DataTransformer
+from src.transformation.data_transformer import DataTransformer
+from src.config import get_data_file
 
 
-RAW_CSV_PATH = "../../data/raw.csv"
-SAVE_CSV_PATH = "../../data/transformed.csv"
+RAW_CSV_PATH = get_data_file("raw.csv")
+SAVE_CSV_PATH = get_data_file("transformed.csv")
 HASH_NAMES = {
     "Atlético Paranaense": "Athletico Paranaense",
     "Grêmio Prudente": "Grêmio Barueri",
