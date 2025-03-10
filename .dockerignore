@@ -1,0 +1,11 @@
+.env.example
+.env
+tests/
+notebooks/
+.gitignore
+.git/
+README.md
+data/*
+!data/.gitkeep
+__pycache__/
+.ruff_cache/
