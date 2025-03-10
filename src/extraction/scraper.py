@@ -54,7 +54,7 @@ def main():
                 f"Request error. URL is likely wrong or has restricted access. Status code: {response.status_code}"
             )
 
-    with open(get_data_file('raw.csv'), mode="w") as file:
+    with open(get_data_file("raw.csv"), mode="w") as file:
         dict_writer = csv.DictWriter(file, fieldnames=list_clubs[0].keys())
         dict_writer.writeheader()
         dict_writer.writerows(list_clubs)

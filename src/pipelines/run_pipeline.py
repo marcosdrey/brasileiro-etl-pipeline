@@ -9,5 +9,5 @@ def main():
     load_data.main()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
